@@ -41,7 +41,7 @@
                     <div class="p-3"><img style="width: 50%"/><img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png" style="height: 120px;"></div>
                 </template>
             </TimelineElementLeft>
-            <TimelineElementRight title="May 1029 - August 2018">
+            <TimelineElementRight title="May 2019 - August 2018">
                 <p><h5 style="display: inline-block">Sasktel</h5> - Engineering Manager</p>
 
                 <ul>
