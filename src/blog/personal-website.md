@@ -222,4 +222,4 @@ jobs:
         BUILD_DIR: docs/.vuepress/dist
 ```
 
-Now any updates to my github repository will 
+Now any updates to my github repository will automatically deploy to [my github website](https://quinnbast.github.io/)!
