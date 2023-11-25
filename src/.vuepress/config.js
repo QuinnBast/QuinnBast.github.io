@@ -28,11 +28,10 @@ module.exports = {
    * ref：https://v1.vuepress.vuejs.org/theme/default-theme-config.html
    */
   themeConfig: {
-    repo: '',
+    repo: 'QuinnBast/QuinnBast.github.io',
     editLinks: false,
     docsDir: '',
-    editLinkText: '',
-    lastUpdated: false,
+    lastUpdated: true,
     nav: [
       {
         text: 'Projects',

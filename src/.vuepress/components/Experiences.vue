@@ -1,5 +1,5 @@
 <template>
-    <div class="full-width">
+    <div class="full">
         <h1 align="center">My Experiences</h1>
         <b-nav class="p-4" pills align="center" variant="dark">
             <b-nav-item :active="experience == 'Professional'" @click="onClickProfessional">Professional</b-nav-item>
@@ -182,8 +182,8 @@ export default {
 }
 </script>
 
-<style scoped>
-div.theme-default-content:not(.full-width) {
+<style>
+.theme-default-content:has(.full) {
     max-width: 100%;
 }
 </style>
