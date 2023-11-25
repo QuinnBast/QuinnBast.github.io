@@ -1,7 +1,7 @@
 ---
-title: "Creating a personal website"
+title: "Using VuePress to create a Personal Website"
 date: 2023-11-25
-description: "Exploring my options for creating a website. Using VuePress for static generation and sharing my experiences along the way."
+description: "Exploring my options for creating a website. My experience using VuePress for static content generation using markdown files."
 tags:
 - Vue
 - Javascript
