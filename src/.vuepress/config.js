@@ -1,5 +1,11 @@
 const { description } = require('../../package')
-var getBlogs = require('./getBlogs');
+const util = require('util')
+
+const getConfig = require("vuepress-bar");
+const { nav, sidebar } = getConfig("src/", {
+  maxLevel: 4,
+  filter: (meta) => meta.title !== undefined
+});
 
 module.exports = {
   /**
@@ -41,34 +47,18 @@ module.exports = {
         text: 'Blog',
         link: '/blog/'
       },
-      {
-        text: 'Donate',
-        link: '/donate/'
-      }
+      // {
+      //   text: 'Donate',
+      //   link: '/donate/'
+      // },
     ],
     searchPlaceholder: 'Search...',
     displayAllHeaders: true,
     lastUpdated: 'Last Updated',
     nextLinks: true,
     prevLinks: true,
-    sidebarDepth: 2,
-    sidebar: {
-      '/blog/': [
-        {
-          title: "Blog",
-          path: '/blog/',
-          children: getBlogs('./src/blog/')
-        }
-      ],
-      '/projects/': [
-        {
-          title: "Experiences",
-          path: '/projects/',
-          children: [
-          ]
-        }
-      ]
-    }
+    sidebarDepth: 4,
+    sidebar: sidebar,
   },
 
   /**

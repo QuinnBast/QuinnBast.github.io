@@ -3,8 +3,8 @@
         <b-container>
             <div>
                 <h4><b-icon-filter/>Filter by Tag</h4>
-                <h3><b-badge @click="removeTag" v-for="tag in selectedTags" v-bind:key="tag" pill variant="secondary">{{ tag }}<b-icon-x/></b-badge></h3>
-                <h3><b-badge @click="selectTag" v-for="tag in availableTags" v-bind:key="tag" pill variant="success">{{ tag }}<b-icon-plus/></b-badge></h3>
+                <h3><b-badge class="m-1" @click="removeTag" v-for="tag in selectedTags" v-bind:key="tag" pill variant="secondary">{{ tag }}<b-icon-x/></b-badge></h3>
+                <h3><b-badge class="m-1" @click="selectTag" v-for="tag in availableTags" v-bind:key="tag" pill variant="success">{{ tag }}<b-icon-plus/></b-badge></h3>
             </div>
         </b-container>
 

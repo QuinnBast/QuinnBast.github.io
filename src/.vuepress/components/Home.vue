@@ -5,7 +5,7 @@
             
         </div>
         <div class="p-2 center">
-            <b-button class="m-4" to="/projects"><h1><b-icon-award/>&nbsp;Accomplishments</h1></b-button>
+            <b-button class="m-4" to="/projects"><h1><b-icon-info/>&nbsp;About Me</h1></b-button>
             <b-button class="m-4" to="/blog"><h1><b-icon-book/>&nbsp;Read my Blog</h1></b-button>
         </div>
     </div>
