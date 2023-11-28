@@ -47,10 +47,10 @@ module.exports = {
         text: 'Blog',
         link: '/blog/'
       },
-      // {
-      //   text: 'Donate',
-      //   link: '/donate/'
-      // },
+      {
+        text: 'Donate',
+        link: '/donate/'
+      },
     ],
     searchPlaceholder: 'Search...',
     displayAllHeaders: true,

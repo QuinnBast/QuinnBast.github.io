@@ -10,48 +10,21 @@
             <TimelineElementLeft title="July 2020 - Present">
                 <p><h5 style="display: inline-block">Calian</h5> - Cloud Native Devops Engineer</p>
                 <ul>
+                    <li>Creating highly avaliable software solutions</li>
                     <li>Kubernetes Administrator</li>
-                    <ul>
-                        <li>Was the go-to person for anything Kubernetes</li>
-                        <li>ArgoCD, K8s Operators, Helm, Kustomize...</li>
-                        <li>Ingress, nginx, TLS, and various CNIs</li>
-                        <li>Creation of custom Helm charts</li>
-                    </ul>
-                    <li>Focus on creating highly avaliable software solutions</li>
-                    <ul>
-                        <li>Redundancy</li>
-                        <li>Fault Tolerance</li>
-                        <li>Replication</li>
-                    </ul>
-                    <li>Leader of multiple Guilds</li>
-                    <ul>
-                        <li>Lead the Container Orchestration and Databases guilds</li>
-                        <li>Provided regular training sessions and support</li>
-                        <li>Set best practices for various tools and technologies</li>
-                        <li>Provided architecture recommendations</li>
-                    </ul>
-                    <li>Devops and infrastructure administrator</li>
-                    <li>Developed satellite software in Kotlin and Java</li>
-                    <li>Minor development in React</li>
+                    <li>Developed software in Kotlin and Java</li>
                 </ul>
                 <template #side>
                     <div class="p-3"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Kubernetes_logo_without_workmark.svg" style="height: 120px"></div>
-                    <div class="p-3"><img style="width: 50%"/><img src="https://helm.sh/img/helm.svg" style="height: 120px;"></div>
-                    <div class="p-3"><img src="https://www.opsmx.com/wp-content/uploads/2022/07/Argo-1-e1630327305635-1.png" style="height: 120px;"></div>
-                    <div class="p-3"><img style="width: 50%"/><img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png" style="height: 120px;"></div>
                 </template>
             </TimelineElementLeft>
             <TimelineElementRight title="May 2019 - August 2018">
                 <p><h5 style="display: inline-block">Sasktel</h5> - Engineering Manager</p>
 
                 <ul>
-                    <li>GIS Engineer</li>
-                    <ul>
-                        <li>Created Geospatial webmaps using Esri products</li>
-                        <li>Developer Python scripts and Geolocators</li>
-                    </ul>
-                    <li>Trained others on Esri's Python and Javascript APIs</li>
-                    <li>Querying Oracle Database for Geospatial data</li>
+                    <li>Vue.js Frontend GIS Developer</li>
+                    <li>Javascript and Python Esri APIs</li>
+                    <li>Oracle Geospatial database</li>
                 </ul>
 
                 <template #side>
@@ -61,9 +34,9 @@
             <TimelineElementLeft title="May 2018 - August 2018">
                 <p><h5 style="display: inline-block">Sasktel</h5> - Engineering Assistant</p>
                 <ul>
-                    <li>Developed Python geospatial scripts</li>
-                    <li>ArcMap, ArcGIS Online, etc.</li>
-                    <li>Migrated Microsoft Access Databases</li>
+                    <li>Python GIS scripting</li>
+                    <li>Esri product experience</li>
+                    <li>Microsoft Access databases</li>
                 </ul>
 
                 <template #side>
@@ -74,12 +47,8 @@
                 <p><h5 style="display: inline-block">Evraz North America</h5> - Programmer Analyst</p>
 
                 <ul>
-                    <li>SQL querying and reporting</li>
-                    <ul>
-                        <li>Migrated outdated DTS reports to SSIS</li>
-                        <li>Windowws Server and SQL Server Management Studio</li>
-                    </ul>
-                    <li>Minor C# exposure</li>
+                    <li>SQL</li>
+                    <li>C#</li>
                 </ul>
 
                 <template #side>
@@ -115,10 +84,10 @@
             <TimelineElementRight title="August 2019 - November 2023">
                 <p><h5 style="display: inline-block"><a href="https://github.com/Subterfuge-Revived">Subterfuge Remake</a></h5> - Project Lead</p>
 
-                <p>Revival project for an old app called <a href="http://subterfuge-game.com/">Subterfuge</a>.
-                This project was a <b>Unity</b> application with an <b>ASP.NET</b> backend with a <b>MongoDB</b> database.
-                The apps used a shared C# dll to allow Unity and the web backend to be able to share core logic.
-                This application was close to completion until a benefactor bought out the original application to keep it's servers alive and continue development.</p>
+                <ul>
+                    <li>Revival of <a href="http://subterfuge-game.com/">Subterfuge</a></li>
+                    <li>ASP.NET, Unity, C#</li>
+                </ul>
 
                 <template #side>
                     <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple111/v4/17/22/1e/17221e39-3d64-6a07-fd45-7d2f1d573147/mzl.noavmpso.png/230x0w.webp" style="height: 120px;">
@@ -127,7 +96,11 @@
             <TimelineElementLeft title="April 2019">
                 <h5 style="display: inline-block"><a href="https://github.com/QuinnBast/SaskTel-Communication-Portal">Sasktel Communication Portal</a></h5>
 
-                <p>My University 4th year project created in collaboration with <a href="https://www.sasktel.com/">Sasktel.</a> Integrates <b>Web RTC sockets</b> to allow making phone calls from the web.</p>
+                <ul>
+                    <li>Web RTC Sockets</a></li>
+                    <li>React frontend, Python backend</li>
+                </ul>
+
                 <template #side>
                     <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/SaskTel_logo.svg" style="height: 120px;">
                 </template>
