@@ -1,6 +1,6 @@
 ---
 title: "Creating a highly available control plane in Kubernetes"
-date: 2023-11-27
+date: 2023-11-27 13:00
 description: "Learn what the Kubernetes Control plane does, and how we can make it highly available."
 tags:
 - Kubernetes
@@ -84,6 +84,8 @@ The control plane consists of the following components:
         </td>
     </tr>
 </table>
+
+<PageHeader/>
 
 # Why do I need my Control Plane Highly Available?
 

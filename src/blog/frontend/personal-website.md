@@ -8,6 +8,8 @@ tags:
 - Frontend
 ---
 
+<PageHeader/>
+
 # Creating a personal website
 
 I set out on an adventure to create a personal website to get some visibility to the world.

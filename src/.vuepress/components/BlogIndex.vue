@@ -59,7 +59,11 @@ export default {
         getPostsToShow() {
             return this.allPostsSorted.filter((post) => {
                 if(this.selectedTags.length != 0) {
-                    return post.frontmatter.tags.some((tag) => this.selectedTags.includes(tag));
+                    if(post.frontmatter.tags != undefined) {
+                        return post.frontmatter.tags.some((tag) => this.selectedTags.includes(tag));
+                    } else {
+                        return post;
+                    }
                 } else {
                     return post;
                 }
