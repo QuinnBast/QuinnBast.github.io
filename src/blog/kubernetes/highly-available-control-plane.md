@@ -7,6 +7,8 @@ tags:
 - High Availability
 ---
 
+<PageHeader/>
+
 # The Kubernetes Control Plane
 
 When you deploy a Kubernetes cluster, the machines in the cluster are often (but not always) separated with some notion of a “worker” vs. a “controller”.
