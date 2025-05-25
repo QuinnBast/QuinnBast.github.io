@@ -1,12 +1,14 @@
 #!/usr/bin/env sh
 set -e
-npm run docs:build
-cd docs/.vuepress/dist
+cd src
+npm run build
+cd dist
+
+touch .nojekyll
 
 git init
 git add -A
 git commit -m 'deploy'
 
-git push -f git@github.com:QuinnBast/QuinnBast.github.io.git master
-
-cd -
+git remote add pages git@github.com:QuinnBast/QuinnBast.github.io.git
+git push -f -u pages master:gh_pages
