@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import {type Ref, ref, computed} from "vue";
+import {type Ref, ref, computed, watch} from "vue";
 import { default as matter } from 'gray-matter'
 import type {GrayMatterFile} from "gray-matter";
+import Button from "primevue/button";
 import Card from "primevue/card";
 import Chip from "primevue/chip";
 import Skeleton from 'primevue/skeleton';
 import router from "@/router";
 import { Markdown, VNodeRenderer } from 'vue-markdown-next';
 import remarkGfm from 'remark-gfm';
+import { blogItems } from '@/utils/blog-post-list';
 
 class BlogPost {
   public data: GrayMatterFile<string>
@@ -17,28 +19,27 @@ class BlogPost {
   }
 }
 
-// List item that holds a list of all of the blog
-const blogItems = [
-    // Kubernetes
-    "articles/kubernetes/resources-stuck-terminating.md",
-    "articles/kubernetes/understanding-requests-and-limits.md",
-    "articles/kubernetes/highly-available-disks.md",
-    "articles/kubernetes/highly-available-control-plane.md",
-
-    // Game def
-    "articles/game-dev/subterfuge/choosing-a-game-engine.md",
-
-    // Frontend
-    "articles/frontend/personal-website.md",
-];
-
 const post: Ref<BlogPost | null> = ref(null)
+const nextPostPath: Ref<string | null> = ref(null);
 
 function getBlogPost() {
   const path = router.currentRoute.value.query.filePath?.toString()!!;
 
   fetchBlogData(path).then((blogPost) => {
     post.value = blogPost;
+
+    // Calculate the next post
+    const currentIndex = blogItems.indexOf(path);
+    if (currentIndex >= 0 && currentIndex < blogItems.length - 1) {
+      nextPostPath.value = blogItems[currentIndex + 1]; // Next post in the list
+    } else {
+      nextPostPath.value = blogItems[0];
+    }
+
+  })
+  .catch((error) => {
+    console.error("Error loading blog post:", error); // Log the error to the console
+    post.value = null; // Set post to null in case of error
   });
 }
 
@@ -50,11 +51,39 @@ function fetchBlogData(blogLink: string): Promise<BlogPost> {
   })
 }
 
+function goToNextPost() {
+  if (nextPostPath.value) {
+    post.value = null;
+    router.push('/article?filePath=' + nextPostPath.value).then(() => {
+      // Scroll to top of the page after navigation
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+}
+
 getBlogPost();
+
+// Watch for router query changes (filePath) to reload post
+watch(
+    () => router.currentRoute.value.query.filePath,
+    (newFilePath) => {
+      if (newFilePath) {
+        getBlogPost(); // Re-fetch the blog post when path changes
+      }
+    }
+);
 </script>
 
 <template>
-  <div class="blog-container" v-if="post != null">
+  <!-- Display loading skeleton until the post is fetched successfully -->
+  <div v-if="!post">
+    <Skeleton width="40rem" height="10rem"></Skeleton>
+    <Skeleton class="mb-2"></Skeleton>
+    <Skeleton width="10rem" class="mb-2"></Skeleton>
+    <Skeleton width="5rem" class="mb-2"></Skeleton>
+    <Skeleton height="2rem" class="mb-2"></Skeleton>
+  </div>
+  <div v-else class="blog-container">
     <Card class="mt-4">
       <template #title><h2>{{ post.data.data.title }}</h2></template>
       <template #subtitle>
@@ -75,15 +104,25 @@ getBlogPost();
         </div>
       </template>
     </Markdown>
-    <br/>
-    <br/>
-  </div>
-  <div v-else>
-    <Skeleton width="40rem" height="10rem"></Skeleton>
-    <Skeleton class="mb-2"></Skeleton>
-    <Skeleton width="10rem" class="mb-2"></Skeleton>
-    <Skeleton width="5rem" class="mb-2"></Skeleton>
-    <Skeleton height="2rem" class="mb-2"></Skeleton>
+    <div class="navigation-buttons">
+      <!-- Back to Blog List Button -->
+      <Button
+          label="Back to Blog List"
+          icon="pi pi-arrow-left"
+          class="p-button-sm p-button-secondary"
+          @click="router.push('/blog')"
+      />
+
+      <!-- Read Next Post Button -->
+      <Button
+          v-if="nextPostPath"
+          label="Read Next Post"
+          icon="pi pi-arrow-right"
+          iconPos="right"
+          class="p-button-sm p-button-secondary"
+          @click="goToNextPost"
+      />
+    </div>
   </div>
 </template>
 
@@ -193,6 +232,34 @@ tbody tr .away::before {
 
 tbody tr .offline::before {
   background-color: var(--dt-status-offline-color);
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.navigation-buttons .p-button {
+  font-size: inherit;
+  padding: 0.5rem 1rem;
+  background-color: #3282b8;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, transform 0.2s ease; /* Smooth effects */
+}
+
+.navigation-buttons .p-button:hover {
+  background-color: #2c6f9e;
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
+.navigation-buttons .p-button:active {
+  background-color: #255779;
+  transform: translateY(0);
 }
 
 </style>
