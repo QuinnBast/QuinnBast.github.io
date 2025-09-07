@@ -12,6 +12,7 @@ export default defineConfig({
     vueDevTools(),
     nodePolyfills(),
   ],
+  base: '/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
