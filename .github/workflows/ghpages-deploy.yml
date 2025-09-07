@@ -20,9 +20,6 @@ concurrency:
 
 jobs:
   deploy:
-    defaults:
-      run:
-        working-directory: ./src
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -36,10 +33,11 @@ jobs:
           node-version: lts/*
           cache: 'npm'
           cache-dependency-path: 'src/package-lock.json'
-      - name: Install dependencies
-        run: npm ci
-      - name: Build
-        run: npm run build
+      - name: Build Project
+        run: |
+          cd src
+          npm install
+          npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
