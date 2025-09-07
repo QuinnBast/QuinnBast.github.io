@@ -34,9 +34,9 @@ setInterval(randomizeGreeting, 4000);
           </p>
       </Fieldset>
       <div class="about-imgs center">
-        <img class="about-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Kubernetes_logo_without_workmark.svg/1055px-Kubernetes_logo_without_workmark.svg.png">
-        <img class="about-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kotlin_Icon.svg/1200px-Kotlin_Icon.svg.png">
-        <img class="about-img" src="https://static-00.iconduck.com/assets.00/node-js-icon-1817x2048-g8tzf91e.png">
+        <img class="about-img" src="@/assets/images/kubernetes_logo.svg.png">
+        <img class="about-img" src="@/assets/images/Kotlin_Icon.png">
+        <img class="about-img" src="@/assets/images/JavaScript-logo.png">
       </div>
     </div>
     <div class="p-2 center">
@@ -53,6 +53,15 @@ setInterval(randomizeGreeting, 4000);
 <style>
 .about-flex {
   display: flex;
+  flex-wrap: wrap; /* Allow wrapping for narrow screens */
+  justify-content: center; /* Center align items */
+  gap: 1rem; /* Add spacing between elements */
+}
+
+@media (max-width: 768px) {
+  .about-flex {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+  }
 }
 
 .about {
@@ -60,14 +69,22 @@ setInterval(randomizeGreeting, 4000);
 }
 
 .about-imgs {
-  height: 14px;
-  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Make images wrap on smaller screens */
+  gap: 0.5rem; /* Add space between images */
 }
 
 .about-img {
   width: 64px;
   height: 64px;
-  margin: 10px;
+}
+
+@media (max-width: 768px) {
+  .about-img {
+    width: 48px; /* Reduce size on mobile */
+    height: 48px;
+  }
 }
 
 .m-4 {
@@ -86,10 +103,31 @@ setInterval(randomizeGreeting, 4000);
   font-size: 7rem;
 }
 
+@media (max-width: 768px) {
+  .greeting {
+    font-size: 3rem; /* Reduced size for smaller devices */
+  }
+
+  .name {
+    font-size: 4rem; /* Keep it large but readable on mobile */
+  }
+}
+
+
 .gradient {
   background: linear-gradient(#1e293b, #181818);
-  height: 30rem;
+  height: auto;
+  min-height: 30rem;
+  padding: 2rem; /* Add some inner spacing */
 }
+
+@media (max-width: 768px) {
+  .gradient {
+    min-height: 20rem; /* Reduce height for smaller devices */
+    padding: 1rem;
+  }
+}
+
 
 .theme-default-content:has(.full) {
   max-width: 100%;
@@ -109,4 +147,17 @@ setInterval(randomizeGreeting, 4000);
 .fade-leave-to {
   opacity: 0;
 }
+
+.p-2.center .p-button {
+  font-size: 1.2rem; /* Adjust font size for smaller screens */
+  padding: 0.5rem 1rem;
+}
+
+@media (max-width: 768px) {
+  .p-2.center .p-button {
+    font-size: 1rem; /* Reduce font size on smaller devices */
+    margin: 10px 0; /* Add vertical spacing for stacking */
+  }
+}
+
 </style>

@@ -44,6 +44,7 @@ const stylePreset = definePreset(Lara, {
 });
 
 const app = createApp(App);
+app.config.warnHandler = () => {}; // Disables all warning logs
 app.use(PrimeVue, {
     theme: {
         preset: stylePreset,

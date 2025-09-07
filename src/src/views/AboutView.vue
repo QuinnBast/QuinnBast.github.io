@@ -5,6 +5,13 @@ import Fieldset from "primevue/fieldset";
 import Carousel from 'primevue/carousel';
 import Panel from 'primevue/panel';
 import Button from 'primevue/button';
+import CalianLogo from '@/assets/images/Calian.png';
+import KubernetesLogo from '@/assets/images/Kubernetes_logo.svg.png';
+import EsriLogo from '@/assets/images/EsriLogo.png';
+import EvrazLogo from '@/assets/images/Evraz.png';
+import SasktelLogo from '@/assets/images/SaskTel_logo.svg.png';
+import PythonLogo from '@/assets/images/Python-logo-notext.svg.png';
+import SqlServerLogo from '@/assets/images/microsoft-sql-server-logo.svg';
 
 import { ref } from "vue";
 
@@ -13,8 +20,8 @@ const events = ref([
     company: 'Calian',
     title: "Cloud Native Devops Engineer",
     date: 'July 2020 - Present',
-    companyImage: "https://hub.calian.com/hs-fs/hubfs/Calian%20logo_Knockout_NoTag.png?width=400&height=200&name=Calian%20logo_Knockout_NoTag.png",
-    oppositeImage: "https://upload.wikimedia.org/wikipedia/commons/3/39/Kubernetes_logo_without_workmark.svg",
+    companyImage: CalianLogo,
+    oppositeImage: KubernetesLogo,
     details: [
         "Creating highly available software solutions",
         "Kubernetes Administrator",
@@ -25,8 +32,8 @@ const events = ref([
     company: 'Sasktel',
     title: "Engineering Manager",
     date: 'August 2018 - May 2019',
-    companyImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/SaskTel_logo.svg/2560px-SaskTel_logo.svg.png",
-    oppositeImage: "https://www.teranet.ca/wp-content/uploads/2025/03/63670e66c4e75fdb3d0415cf_ESRI_logo_logotype.png",
+    companyImage: SasktelLogo,
+    oppositeImage: EsriLogo,
     details: [
         "Vue.js Frontend GIS Developer",
         "Utilized Esri APIs in Javascript and Python",
@@ -37,8 +44,8 @@ const events = ref([
     company: 'Sasktel',
     title: "Engineering Assistant",
     date: 'May - August 2018',
-    companyImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/SaskTel_logo.svg/2560px-SaskTel_logo.svg.png",
-    oppositeImage: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/115px-Python-logo-notext.svg.png",
+    companyImage: SasktelLogo,
+    oppositeImage: PythonLogo,
     details: [
       "Python GIS scripting",
       "Esri product experience",
@@ -49,8 +56,8 @@ const events = ref([
     company: 'Evraz North America',
     title: "Programmer Analyst",
     date: 'September - December 2017',
-    companyImage: "https://companieslogo.com/img/orig/EVZ.F_BIG.D-4f4d8d98.png?t=1720244491",
-    oppositeImage: "https://www.svgrepo.com/show/303229/microsoft-sql-server-logo.svg",
+    companyImage: EvrazLogo,
+    oppositeImage: SqlServerLogo,
     details: [
       "Optimizing SQL queries",
       "C# Windows Forms",
@@ -72,7 +79,7 @@ const personalProjects = ref([
     date: "March, 2025",
     description: "A Kubernetes cluster management software that allows you to create and manage deployments as well as make use of re-usable templates. Built with Electron.",
     url: "https://github.com/QuinnBast/KubeCommon",
-    image: "https://upload.wikimedia.org/wikipedia/commons/3/39/Kubernetes_logo_without_workmark.svg"
+    image: "@/assets/images/Kubernetes_logo.svc.png"
   },
   {
     title: "Personal Finance Analyzer",
@@ -84,14 +91,14 @@ const personalProjects = ref([
   {
     title: "HaHelper",
     date: "March 2023 - Present",
-    description: "Need your data highly available? HaHelper.",
+    description: "Need to make your software highly available? HaHelper lets you cluster your own software using RAFT consensus algorithm.",
     url: "https://github.com/QuinnBast/HaHelper",
     image: ""
   },
   {
     title: "Personal Website",
     date: "November 2023 - Present",
-    description: "My personal website and blog hosted through github pages.",
+    description: "This website and blog! Hosted through github pages.",
     url: "https://quinnbast.github.io/",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/512px-Vue.js_Logo_2.svg.png"
   },
@@ -157,7 +164,7 @@ const responsiveOptions = ref([
     <Fieldset class="about" legend="Professional Experience">
       <Timeline :value="events" align="alternate" class="customized-timeline">
         <template #content="slotProps">
-          <Card class="mt-4">
+          <Card class="mt-4 timeline-event">
             <template #title>
               <img v-if="slotProps.item.companyImage" :src="slotProps.item.companyImage" :alt="slotProps.item.company" width="200" class="shadow-sm" />
             </template>
@@ -180,9 +187,9 @@ const responsiveOptions = ref([
     <Panel header="Personal Projects" class="mt-4">
         <Carousel class="fixWidth" :value="personalProjects" :numVisible="4" :numScroll="2" :responsiveOptions="responsiveOptions" circular :autoplayInterval="8000">
           <template #item="slotProps">
-            <Card>
+            <Card class="project-card">
               <template #header>
-                <img style="max-width: 200px; max-height: 150px;" :src="slotProps.data.image" :alt="slotProps.data.title" class="w-full rounded" />
+                <img style="max-width: 200px; max-height: 150px;" :src="slotProps.data.image" :alt="slotProps.data.title" class="w-full rounded img-fluid" />
               </template>
               <template #title>{{ slotProps.data.title }}</template>
               <template #subtitle>{{ slotProps.data.date }}</template>
@@ -200,7 +207,6 @@ const responsiveOptions = ref([
 <style>
 .opposite-img {
   padding: 0 0;
-  top: 125px;
   position: relative;
 }
 
@@ -210,5 +216,94 @@ const responsiveOptions = ref([
 
 .mt-4 {
   margin: 30px;
+}
+
+.p-timeline-event {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping for timeline items */
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.p-timeline-event-opposite img {
+  max-width: 150px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+
+@media (max-width: 768px) {
+  .p-timeline-event-opposite img {
+    display: none;
+  }
+
+  .p-timeline-event {
+    flex-direction: column; /* Stack items vertically */
+    text-align: center; /* Center align for better readability */
+  }
+
+  .p-timeline-event .event-details {
+    margin-top: 1rem; /* Add spacing between items vertically */
+  }
+}
+
+.project-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cards per row on larger screens */
+  gap: 1.5rem; /* Space between cards */
+}
+
+.project-card img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+@media (max-width: 1024px) {
+  .project-cards {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row for medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .project-cards {
+    grid-template-columns: 1fr; /* 1 card per row on mobile */
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block; /* Avoid inline padding issues */
+  margin: 0 auto; /* Center images */
+}
+
+.image-container {
+  text-align: center; /* Center align image within its container */
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .image-container img {
+    width: 80%; /* Shrink images slightly on mobile */
+  }
+}
+
+fieldset,
+.p-panel {
+  margin: 1rem auto;
+  padding: 1rem;
+  border-radius: 5px; /* Add slight rounding for better design */
+}
+
+@media (max-width: 768px) {
+  fieldset,
+  .p-panel {
+    margin: 0.5rem auto;
+    padding: 0.5rem;
+  }
 }
 </style>

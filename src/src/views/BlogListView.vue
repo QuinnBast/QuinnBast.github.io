@@ -10,6 +10,7 @@ import PanelMenu from 'primevue/panelmenu';
 import Skeleton from 'primevue/skeleton';
 import type {MenuItem} from "primevue/menuitem";
 import { useRoute, useRouter } from 'vue-router'
+import { blogItems } from '@/utils/blog-post-list';
 
 const router = useRouter()
 
@@ -22,21 +23,6 @@ class BlogPost {
     this.data = matter(fileContent);
   }
 }
-
-// List item that holds a list of all of the blog
-const blogItems = [
-    // Kubernetes
-    "articles/kubernetes/resources-stuck-terminating.md",
-    "articles/kubernetes/understanding-requests-and-limits.md",
-    "articles/kubernetes/highly-available-disks.md",
-    "articles/kubernetes/highly-available-control-plane.md",
-
-    // Game def
-    "articles/game-dev/subterfuge/choosing-a-game-engine.md",
-
-    // Frontend
-    "articles/frontend/personal-website.md",
-];
 
 const blogPosts: Ref<Array<BlogPost>> = ref([])
 const tags: Ref<Array<string>> = ref([])
@@ -119,38 +105,51 @@ getBlogPosts();
   <div class="blog-container">
     <h1>Blog</h1>
 
-    <div class="flex-container" v-if="blogPosts.length != 0">
+    <div class="blog-layout" v-if="blogPosts.length != 0">
 
-      <div class="flex-menu">
-        <div class="card flex justify-center path-finder">
-          <PanelMenu :model="navPathItems" multiple class="w-full md:w-80">
-          </PanelMenu>
-        </div>
+      <!-- Sidebar for Navigation and Tag Filters -->
+      <aside class="sidebar">
+        <PanelMenu :model="navPathItems" multiple />
 
-        <h4><i class="pi pi-filter"/>Filter by Tag</h4>
-        <h5>
-          <div v-for="tag in tags" :key="tag" class="checkbox flex items-center gap-2">
-            <Checkbox class="pad-check" v-model="selectedTags" :inputId="tag" name="tag" :value="tag" />
-            <label class="label-pad" :for="tag">{{ tag }}</label>
+        <div class="filter-container">
+          <h4><i class="pi pi-filter" /> Filter by Tag</h4>
+          <div class="tags">
+            <div v-for="tag in tags" :key="tag" class="tag-checkbox">
+              <Checkbox v-model="selectedTags" :inputId="tag" :value="tag" />
+              <label :for="tag">{{ tag }}</label>
+            </div>
           </div>
-        </h5>
-      </div>
+        </div>
+      </aside>
 
-      <div class="flex-post-list">
+      <!-- Blog Posts Section -->
+      <section class="blog-grid">
+        <Card
+            v-for="post in blogsSorted"
+            :key="post.filePath"
+            class="blog-card"
+        >
+          <template #title>
+            <h3>{{ post.data.data.title }}</h3>
+          </template>
 
-        <h1>Posts</h1>
+          <template #content>
+            <p class="excerpt">{{ post.data.data.description }}</p>
+            <p class="date">{{ new Date(post.data.data.date).toLocaleDateString() }}</p>
+          </template>
 
-        <Card class="mt-4" v-for="post in blogsSorted">
-          <template #title><h1>{{ post.data.data.title }} {{ post.filename }}</h1></template>
-          <template #subtitle><b>{{ new Date(post.data.data.date).toDateString() }}</b></template>
-          <template #content>{{ post.data.data.description }}</template>
           <template #footer>
-            <Button class="m-4" asChild v-slot="slotProps">
-              <RouterLink :to="'/article?filePath=' + post.filePath" :class="slotProps.class + ' m-4'"><h4><i class="pi pi-book"/>&nbsp;Read more</h4></RouterLink>
-            </Button>
+            <Button
+                label="Read Post"
+                icon="pi pi-book"
+                iconPos="left"
+                class="p-button-text p-button-sm"
+                @click="() => router.push('/article?filePath=' + post.filePath)"
+            />
           </template>
         </Card>
-      </div>
+      </section>
+
     </div>
     <div v-else>
       <Skeleton width="40rem" height="10rem"></Skeleton>
@@ -163,35 +162,121 @@ getBlogPosts();
 </template>
 
 <style scoped>
-.flex-container {
-  display: flex;
-}
-
-.flex-menu {
-  margin: 2rem;
-  flex-grow: 2;
-  max-width: 600px;
-  min-width: 400px;
-}
-
-.path-finder {
-  margin: 2rem;
-}
-
-.flex-post-list {
-  flex-grow: 3;
-}
-
-.checkbox {
-  margin: 4px;
-}
-
+/* Blog Container */
 .blog-container {
+  padding: 2rem;
+  max-width: 1200px;
   margin: auto;
-  max-width: 1240px;
 }
 
-.label-pad {
-  padding: 6px;
+.blog-card .p-button {
+  background-color: #27a5a2; /* Solid green background for the button */
+  color: #fff; /* White text for contrast */
+  border: none; /* Remove the border for a cleaner look */
+  font-weight: bold; /* Bold text for emphasis */
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
+
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+/* Main Layout (Sidebar + Blog Posts Grid) */
+.blog-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr; /* Sidebar and Content */
+  gap: 2rem;
+}
+
+.sidebar {
+  background-color: #1e1e1e;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  height: fit-content;
+}
+
+.filter-container {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #272727;
+  border: 1px solid #333;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); /* Soft shadow for elevation */
+}
+
+
+.tags {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-container h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  color: #ddd;
+}
+
+
+.tag-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tag-checkbox .p-checkbox {
+  --checkbox-border-radius: 4px;
+}
+
+/* Blog Cards Section */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Flexible grid */
+  gap: 2rem;
+}
+
+.blog-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.excerpt {
+  margin: 1rem 0;
+  color: #555;
+}
+
+.date {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .blog-layout {
+    grid-template-columns: 1fr; /* Stack sidebar and content */
+  }
+
+  .sidebar {
+    margin-bottom: 2rem;
+  }
+
+  .filter-container {
+    display: none; /* Completely hide the tag filter */
+  }
+}
+
 </style>
