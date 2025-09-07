@@ -27,13 +27,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+      - name: Move Directory
+        run: cd src
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
           cache: 'npm'
-      - name: Move Directory
-        run: cd src
       - name: Install dependencies
         run: npm ci
       - name: Build
