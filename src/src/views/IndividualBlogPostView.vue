@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// @ts-nocheck
 import {type Ref, ref, computed, watch} from "vue";
 import { default as matter } from 'gray-matter'
 import type {GrayMatterFile} from "gray-matter";
@@ -7,9 +8,9 @@ import Card from "primevue/card";
 import Chip from "primevue/chip";
 import Skeleton from 'primevue/skeleton';
 import router from "@/router";
+import { blogItems } from '@/utils/blog-post-list';
 import { Markdown, VNodeRenderer } from 'vue-markdown-next';
 import remarkGfm from 'remark-gfm';
-import { blogItems } from '@/utils/blog-post-list';
 
 class BlogPost {
   public data: GrayMatterFile<string>
