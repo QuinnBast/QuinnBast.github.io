@@ -18,146 +18,170 @@ setInterval(randomizeGreeting, 4000);
 </script>
 
 <template>
-  <main class="big-text">
-    <div class="gradient center">
-      <Transition appear name="fade" mode="out-in">
-        <h3 class="greeting" :key="greeting">{{ greeting }}</h3>
-      </Transition><br/>
-      <h1 class="name">I'm Quinn</h1>
-    </div>
-    <div class="about-flex">
-      <Fieldset legend="About Me">
-          <p class="m-0">
-            I’m a software engineer with over 7 years of experience,<br/>
-            I specialize in high availability system design and deployments.<br/>
-            Thanks for visiting!<br/>
-          </p>
-      </Fieldset>
-      <div class="about-imgs center">
-        <img class="about-img" src="@/assets/images/kubernetes_logo.svg.png">
-        <img class="about-img" src="@/assets/images/Kotlin_Icon.png">
-        <img class="about-img" src="@/assets/images/JavaScript-logo.png">
+  <main class="hub-container gradient">
+    <!-- Personal Section -->
+    <section class="hub-section">
+      <h2 class="section-header">Personal</h2>
+      <div class="hub-grid">
+        <RouterLink to="/about" class="hub-box">
+          <i class="pi pi-info-circle hub-icon"></i>
+          <span>About Me</span>
+        </RouterLink>
+        <RouterLink to="/blog" class="hub-box">
+          <i class="pi pi-book hub-icon"></i>
+          <span>Blog Posts</span>
+        </RouterLink>
       </div>
-    </div>
-    <div class="p-2 center">
-      <Button class="m-4" asChild v-slot="slotProps">
-        <RouterLink to="/about" :class="slotProps.class + ' m-4'"><h1><i class="pi pi-info-circle"/>&nbsp;About Me</h1></RouterLink>
-      </Button>
-      <Button class="m-4" asChild v-slot="slotProps">
-        <RouterLink to="/blog" :class="slotProps.class + ' m-4'"><h1><i class="pi pi-book"/>&nbsp;Read my Blog</h1></RouterLink>
-      </Button>
-    </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section class="hub-section">
+      <h2 class="section-header">Tools</h2>
+      <div class="hub-grid">
+        <RouterLink to="/flip7" class="hub-box">
+          <span>Flip 7 Scoring Tool</span>
+        </RouterLink>
+        <RouterLink to="/string-replacer" class="hub-box">
+          <span>String Replacer</span>
+        </RouterLink>
+        <RouterLink to="/json-formatter" class="hub-box">
+          <span>JSON Formatter</span>
+        </RouterLink>
+        <RouterLink to="/s2-region-coverer" class="hub-box">
+          <span>S2 Region Coverer</span>
+        </RouterLink>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="hub-section">
+      <h2 class="section-header">Projects</h2>
+      <div class="hub-grid">
+        <RouterLink to="/project-1" class="hub-box">
+          <span>Pair'd</span>
+        </RouterLink>
+        <RouterLink to="/project-2" class="hub-box">
+          <span>Personal Finance Analyzer</span>
+        </RouterLink>
+        <RouterLink to="/project-3" class="hub-box">
+          <span>Personal Website</span>
+        </RouterLink>
+        <RouterLink to="/project-4" class="hub-box">
+          <span>HaHelper</span>
+        </RouterLink>
+        <RouterLink to="/project-5" class="hub-box">
+          <span>Subterfuge Community Edition</span>
+        </RouterLink>
+        <RouterLink to="/project-6" class="hub-box">
+          <span>Gamemaker Game Archive</span>
+        </RouterLink>
+      </div>
+    </section>
+
+    <!-- Technical Section -->
+    <section class="hub-section">
+      <h2 class="section-header">Technical</h2>
+      <div class="hub-grid">
+        <RouterLink to="/homelab" class="hub-box">
+          <span>Homelab</span>
+        </RouterLink>
+      </div>
+    </section>
   </main>
 </template>
 
-<style>
-.about-flex {
-  display: flex;
-  flex-wrap: wrap; /* Allow wrapping for narrow screens */
-  justify-content: center; /* Center align items */
-  gap: 1rem; /* Add spacing between elements */
-}
-
-@media (max-width: 768px) {
-  .about-flex {
-    flex-direction: column; /* Stack items vertically on smaller screens */
-  }
-}
-
-.about {
-  flex-grow: 2;
-}
-
-.about-imgs {
+<style scoped>
+/* Full-page gradient background */
+.gradient {
+  background: linear-gradient(145deg, #1c1c1c, #0f0f0f); /* Dark gray-to-black gradient */
+  min-height: 100vh;
+  padding: 2rem; /* Maintain breathing room around edges */
   display: flex;
   justify-content: center;
-  flex-wrap: wrap; /* Make images wrap on smaller screens */
-  gap: 0.5rem; /* Add space between images */
+  align-items: center;
+  color: #e5e5e5; /* Soft light-gray text for readability */
 }
 
-.about-img {
-  width: 64px;
-  height: 64px;
+/* Full-width hub container */
+.hub-container {
+  display: flex;
+  flex-direction: column; /* Stack all sections vertically */
+  justify-content: space-between; /* Distribute sections evenly */
+  width: 100%; /* Take up full width of the available screen */
+  max-width: 1400px; /* Limit maximum width */
+  padding: 0 1rem; /* Add spacing around the edges */
+  box-sizing: border-box; /* Ensure padding doesn’t affect the container size */
 }
 
-@media (max-width: 768px) {
-  .about-img {
-    width: 48px; /* Reduce size on mobile */
-    height: 48px;
-  }
-}
-
-.m-4 {
-  margin: 15px;
-}
-
-.big-text {
-  font-size: 24px;
-}
-
-.greeting {
-  font-size: 5rem;
-}
-
-.name {
-  font-size: 7rem;
-}
-
-@media (max-width: 768px) {
-  .greeting {
-    font-size: 3rem; /* Reduced size for smaller devices */
-  }
-
-  .name {
-    font-size: 4rem; /* Keep it large but readable on mobile */
-  }
-}
-
-
-.gradient {
-  background: linear-gradient(#1e293b, #181818);
-  height: auto;
-  min-height: 30rem;
-  padding: 2rem; /* Add some inner spacing */
-}
-
-@media (max-width: 768px) {
-  .gradient {
-    min-height: 20rem; /* Reduce height for smaller devices */
-    padding: 1rem;
-  }
-}
-
-
-.theme-default-content:has(.full) {
-  max-width: 100%;
-}
-
-.center {
+/* Ensure proper spacing for each section */
+.hub-section {
+  display: flex;
+  flex-direction: column; /* Stack headers and grids vertically */
   text-align: center;
-  padding: 6rem 0;
+  margin-bottom: 4rem; /* Add space between sections */
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 1s ease;
+/* Section header styling */
+.section-header {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #d1d1d1; /* Neutral light-gray headers */
+  border-bottom: 2px solid #3a3a3a; /* Subtle gray divider for sections */
+  padding-bottom: 0.5rem;
 }
 
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
+/* Grid layout for displaying wide boxes */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two evenly sized columns */
+  gap: 2rem; /* Space out items */
+  justify-content: center; /* Center grid content */
 }
 
-.p-2.center .p-button {
-  font-size: 1.2rem; /* Adjust font size for smaller screens */
-  padding: 0.5rem 1rem;
+/* Styling for individual boxes */
+.hub-box {
+  background: #2b2b2b; /* Dark gray background for boxes */
+  border-radius: 12px; /* Rounded corners */
+  height: 200px; /* Consistent height */
+  flex-grow: 1; /* Allow the boxes to grow within the grid */
+  display: flex;
+  flex-direction: column; /* Stack box content vertically */
+  align-items: center; /* Center-align box content */
+  justify-content: center;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #e0e0e0; /* Soft light-gray text */
+  text-decoration: none; /* Remove underlines for links */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4); /* Soft black shadow for depth */
+  width: 45%; /* Make each box take 45% of the grid's width */
+  min-width: 250px; /* Prevent shrinking below 250px */
 }
 
+/* Add space between the icon and label */
+.hub-icon {
+  font-size: 3rem; /* Larger icon size for visibility */
+  margin-bottom: 1rem; /* Add extra spacing between icon and label */
+}
+
+/* Hover effect for buttons */
+.hub-box:hover {
+  transform: translateY(-5px); /* Subtle lift effect */
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.6); /* Darker shadow on hover for depth */
+  background: #3a3a3a; /* Slightly lighter gray on hover */
+}
+
+/* Mobile responsiveness: Stack boxes in one column */
 @media (max-width: 768px) {
-  .p-2.center .p-button {
-    font-size: 1rem; /* Reduce font size on smaller devices */
-    margin: 10px 0; /* Add vertical spacing for stacking */
+  .hub-grid {
+    grid-template-columns: 1fr; /* Switch to single column layout */
+  }
+
+  .hub-box {
+    width: 100%; /* Extend box width to fit the screen */
+    height: 180px; /* Adjust height for smaller screens */
   }
 }
-
 </style>
