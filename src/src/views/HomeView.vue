@@ -50,6 +50,9 @@ setInterval(randomizeGreeting, 4000);
         <RouterLink to="/s2-region-coverer" class="hub-box">
           <span>S2 Region Coverer</span>
         </RouterLink>
+        <RouterLink to="/h3-region-coverer" class="hub-box">
+          <span>H3 Region Coverer</span>
+        </RouterLink>
       </div>
     </section>
 
