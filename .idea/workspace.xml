@@ -4,23 +4,95 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc8af35c-d3fb-49ec-a806-9fd329041c4d" name="Changes" comment="" />
+    <list default="true" id="bc8af35c-d3fb-49ec-a806-9fd329041c4d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/settings.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/bast/quinn/finance/PersonalServer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/bast/quinn/finance/PersonalServerMain.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/bast/quinn/finance/config/ServerConfig.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/bast/quinn/finance/models/ApiModels.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/log4j2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/server-config-local.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/server-config.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/src/views/HomelabView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/src/views/UnderConstruction.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/src/views/HomeView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/views/tools/FlipSevenScoringTool.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/src/views/tools/FlipSevenScoringTool.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/views/tools/H3RegionCovererTool.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/src/views/tools/H3RegionCovererTool.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/views/tools/JsonFormatTool.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/src/views/tools/JsonFormatTool.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/views/tools/S2RegionCovererTool.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/src/views/tools/S2RegionCovererTool.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/views/tools/StringReplaceTool.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/src/views/tools/StringReplaceTool.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tsconfig.app.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/tsconfig.app.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/server">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/server">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="PersonalWebsite" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="PersonalWebsite" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="PersonalWebsite" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Vue Composition API Component" />
         <option value="JavaScript File" />
+        <option value="Vue Composition API Component" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -29,49 +101,135 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;gh__pages&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Quinn/Documents/Coding/PersonalBlog&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Quinn\\AppData\\Local\\Programs\\IntelliJ IDEA Ultimate\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.Dockerfile.executor": "Run",
+    "Gradle.Build server.executor": "Run",
+    "Gradle.server [build].executor": "Run",
+    "Gradle.server [clean].executor": "Run",
+    "Gradle.server [npmBuild].executor": "Run",
+    "JAR Application.PersonalWebsite-1.0-SNAPSHOT.jar.executor": "Run",
+    "Kotlin.PersonalServerMainKt.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "RevampWebsite",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Quinn/Documents/Coding/PersonalBlog/server/src/main/resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Users\\Quinn\\Documents\\Coding\\PersonalBlog\\src\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;vue.recent.templates&quot;: [
-      &quot;Vue Composition API Component&quot;
+  "keyToStringList": {
+    "vue.recent.templates": [
+      "Vue Composition API Component"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Quinn\Documents\Coding\PersonalBlog" />
-      <recent name="C:\Users\Quinn\Documents\Coding\PersonalBlog\src\src\assets" />
+      <recent name="C:\Users\Quinn\Documents\Coding\PersonalBlog\server\src\main\resources" />
+      <recent name="C:\Users\Quinn\Documents\Coding\PersonalBlog\server" />
       <recent name="C:\Users\Quinn\Documents\Coding\PersonalBlog\src\src\views" />
-      <recent name="C:\Users\Quinn\Documents\Coding\PersonalBlog\src\src" />
-      <recent name="C:\Users\Quinn\Documents\Coding\PersonalBlog\src" />
+      <recent name="C:\Users\Quinn\Documents\Coding\PersonalBlog\src\src\views\tools" />
+      <recent name="C:\Users\Quinn\Documents\Coding\PersonalBlog" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Quinn\Documents\Coding\PersonalBlog" />
       <recent name="C:\Users\Quinn\Documents\Coding\PersonalBlog\src\public\images\prometheus" />
       <recent name="C:\Users\Quinn\Documents\Coding\PersonalBlog\src\public\articles\prometheus" />
       <recent name="C:\Users\Quinn\Documents\Coding\PersonalBlog\src\public\images" />
       <recent name="C:\Users\Quinn\Documents\Coding\PersonalBlog\src\public\ArduinoHookupImuSensor.png" />
-      <recent name="C:\Users\Quinn\Documents\Coding\PersonalBlog\src\src\assets\images" />
     </key>
+  </component>
+  <component name="RunManager" selected="Docker.Dockerfile">
+    <configuration name="server [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/server" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="server [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/server" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="PersonalWebsite-1.0-SNAPSHOT.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/server/build/libs/PersonalWebsite-1.0-SNAPSHOT.jar" />
+      <method v="2" />
+    </configuration>
+    <configuration name="PersonalServerMainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="bast.quinn.finance.PersonalServerMainKt" />
+      <module name="PersonalWebsite.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="imageTag" value="personal-website:1.0.0" />
+          <option name="containerName" value="" />
+          <option name="sourceFilePath" value="Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.Dockerfile" />
+        <item itemvalue="Kotlin.PersonalServerMainKt" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-WS-243.26053.12" />
       </set>
     </attachedChunks>
   </component>
@@ -93,6 +251,10 @@
       <workItem from="1758484625056" duration="110000" />
       <workItem from="1758680307407" duration="603000" />
       <workItem from="1765842242277" duration="21000" />
+      <workItem from="1769899309450" duration="18176000" />
+      <workItem from="1769974070729" duration="7246000" />
+      <workItem from="1769983133443" duration="1787000" />
+      <workItem from="1769985072424" duration="2000" />
     </task>
     <servers />
   </component>

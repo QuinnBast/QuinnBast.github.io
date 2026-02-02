@@ -33,7 +33,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+// @ts-nocheck
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-draw/dist/leaflet.draw.js";

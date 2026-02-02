@@ -1,8 +1,6 @@
 <script setup lang="ts">
 // @ts-nocheck
 import { ref } from "vue";
-import Button from 'primevue/button';
-import Fieldset from 'primevue/fieldset';
 
 const greeting = ref("Hello!")
 
@@ -56,37 +54,15 @@ setInterval(randomizeGreeting, 4000);
       </div>
     </section>
 
-    <!-- Projects Section -->
-    <section class="hub-section">
-      <h2 class="section-header">Projects</h2>
-      <div class="hub-grid">
-        <RouterLink to="/project-1" class="hub-box">
-          <span>Pair'd</span>
-        </RouterLink>
-        <RouterLink to="/project-2" class="hub-box">
-          <span>Personal Finance Analyzer</span>
-        </RouterLink>
-        <RouterLink to="/project-3" class="hub-box">
-          <span>Personal Website</span>
-        </RouterLink>
-        <RouterLink to="/project-4" class="hub-box">
-          <span>HaHelper</span>
-        </RouterLink>
-        <RouterLink to="/project-5" class="hub-box">
-          <span>Subterfuge Community Edition</span>
-        </RouterLink>
-        <RouterLink to="/project-6" class="hub-box">
-          <span>Gamemaker Game Archive</span>
-        </RouterLink>
-      </div>
-    </section>
-
     <!-- Technical Section -->
     <section class="hub-section">
       <h2 class="section-header">Technical</h2>
       <div class="hub-grid">
         <RouterLink to="/homelab" class="hub-box">
           <span>Homelab</span>
+        </RouterLink>
+        <RouterLink to="/training" class="hub-box">
+          <span>Training Material</span>
         </RouterLink>
       </div>
     </section>

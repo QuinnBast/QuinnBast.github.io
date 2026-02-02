@@ -48,7 +48,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+// @ts-nocheck
 export default {
   data() {
     return {
