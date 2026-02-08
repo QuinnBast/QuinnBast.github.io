@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-rest-api
+spec:
+  selector:
+    matchLabels:
+      app: python-rest-api
+  template:
+    metadata:
+      labels:
+        app: python-rest-api
+    spec:
+      containers:
+        - name: python-rest-api
+          # Specify the docker image we want
+          image: at-docker.eng.at.caliangroup.com/training/python-training-container:quinnbast
+
+          # Allows setting CLI flags!
+          command: [ "python3", "main.py", "--experimental" ]
+
+          # Set env variables for the docker image:
+          env:
+            - name: API_USER_FIRST_NAME
+              value: Quinn
+            - name: API_USER_LAST_NAME
+              value: Bast
+            - name: API_USER_FAVORITE_PET
+              value: Puppies!
+
+          # Specify the port
+          ports:
+            - containerPort: 8080

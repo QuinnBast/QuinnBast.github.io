@@ -1,0 +1,4 @@
+apiVersion: v2
+name: python-rest
+version: 0.0.2
+description: Helm chart for deploying python REST application

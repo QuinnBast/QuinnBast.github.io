@@ -1,0 +1,23 @@
+pythonRestApi:
+  enabled: true
+  image:
+    registry: at-docker.eng.at.caliangroup.com
+    name: training/python-training-container
+    tag: quinnbast
+  env:
+    - name: API_USER_FIRST_NAME
+      value: Quinn
+    - name: API_USER_LAST_NAME
+      value: Bast
+    - name: API_USER_FAVORITE_PET
+      value: Puppies!
+  nodePort: 30007
+  config: |
+    server:
+      host: "0.0.0.0"
+      port: 8080
+      cowsay: "Something different!!"
+    redis:
+      enabled: False
+      host: "redis-master.default.svc.cluster.local"
+      port: "6379"

@@ -1,0 +1,32 @@
+# First, we indicate what version of docker-compose we want to use:
+version: "3.9"
+
+#Next, the 'services' block defines the list of services we want to deploy:
+services:
+
+  # The top level keys are the name of the service.
+  # For us, let's keep using "python-container" as the name
+  python-container:
+    # Now we defined the parameters to the docker run command in a YAML format:
+
+    # Same as `-p`
+    ports:
+      - 8088:8088
+
+    # The image name
+    image: at-docker.eng.at.caliangroup.com/training/python-training-container:1.0
+
+    # environment variables
+    environment:
+      API_USER_FIRST_NAME: "Quinn"
+      API_USER_LAST_NAME: "Bast"
+      API_USER_FAVORITE_PET: "Puppies!"
+
+    # Volume mounts
+    volumes:
+      - ../../docker-app-bind:/data
+
+    # Override the default command
+    command: python3 -u main.py --file /data/settings.yaml
+  redis:
+    image: redis

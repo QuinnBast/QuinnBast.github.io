@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Auth-Demo</title>
+</head>
+
+<body>
+<div>
+    <label>
+        Username
+        <input type="text" id="new_username"/>
+    </label>
+    <label>
+        Password
+        <input type="text" id="new_password"/>
+    </label>
+    <label>
+        Role
+
+        <select id="new_role">
+            <option value="ADMIN">Admin</option>
+            <option value="USER">User</option>
+            <option value="VIEWER">Viewer</option>
+        </select>
+    </label>
+
+    <button onclick="createUser()">New User</button>
+
+    <div id="userData"/>
+</div>
+</body>
+
+<script>
+    function getUsers() {
+        let userData = document.getElementById("userData");
+        fetch("/api/users").then((success) => {
+            success.json().then((data) => {
+                let users = data.map((user) => {
+                    return `<div>${user.username} - ${user.roles.join(", ")}<button onclick="makeViewer(${user.username})">Make Viewer</button></div>`;
+                });
+                userData.innerHTML = users.join("");
+            })
+            console.log("Success: ", success);
+        }).catch((error) => {
+            userData.innerHTML = "Error while fetching users." + error;
+            console.log("Error: ", error);
+        });
+    }
+
+    function createUser() {
+        fetch("/api/user", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                username: document.getElementById("new_username").value,
+                password: document.getElementById("new_password").value,
+                roles: [document.getElementById("new_role").value],
+            }),
+        }).then((success) => {
+            console.log("Success: ", success);
+            getUsers();
+        }).catch((error) => {
+            console.log("Error: ", error);
+        });
+    }
+
+    // Call this on load.
+    getUsers()
+</script>

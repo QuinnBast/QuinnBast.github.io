@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: python-rest-api-service
+spec:
+  # We specify we want a NodePort service
+  type: NodePort
+  # We use a selector so that the service knows what Pod to bind to.
+  # This needs to match the labels from our `Deployment` from earlier!
+  selector:
+    app: python-rest-api
+
+  # The `ports` field is present on all Service types.
+  ports:
+    # The `port` is the port that the service will make available inside the cluster
+    - port: 80
+      # 'targetPort' is the container's port to expose
+      targetPort: 80
+      # If choosing a nodePort, this configures which port gets exposed on each machine.
+      # By default and "for convenience", the Kubernetes control plane will allocate a RANDOM port from a range (default: 30000-32767)
+      # Note: NodePorts MUST be above 30000 for some reason, or they will not work.
+      nodePort: 30007

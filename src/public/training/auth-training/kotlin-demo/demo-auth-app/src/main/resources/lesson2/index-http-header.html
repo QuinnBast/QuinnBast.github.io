@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Auth-Demo</title>
+</head>
+
+<body>
+    <div>
+        <label>
+            <input type="text" id="login_username"/>
+        </label>
+        <label>
+            <input type="text" id="login_password"/>
+        </label>
+        <button onclick="login()" >Submit</button>
+
+        <div id="sessionContent"></div>
+    </div>
+</body>
+
+<script>
+    var authHeader = null;
+
+    function login() {
+        var inputUsername = document.getElementById("login_username").value;
+        var inputPassword = document.getElementById("login_password").value;
+
+        var self = this;
+
+        fetch("http://localhost:9001/api/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                username: inputUsername,
+                password: inputPassword,
+            }),
+        }).then((success) => {
+            console.log("Success: ", success);
+
+            // Get the header from the response.
+            authHeader = success.headers.get("Auth-Demo-HTTP-Header");
+
+            // Send the user to the next page.
+            getSessionData(authHeader)
+
+        }).catch((error) => {
+            console.log("Error: ", error);
+        });
+    }
+
+    async function getSessionData(header) {
+        var sessionDiv = document.getElementById("sessionContent");
+
+        fetch("http://localhost:9001/api/session", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Auth-Demo-HTTP-Header": header
+            },
+        }).then((success) => {
+            console.log("Success: ", success);
+            success.text().then((data) => {
+                sessionDiv.innerHTML = data;
+            });
+        }).catch((error) => {
+            console.log("Error: ", error);
+        });
+    }
+</script>

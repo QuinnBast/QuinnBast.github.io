@@ -1,0 +1,33 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  kubeadmConfigPatches:
+  - |
+    kind: ClusterConfiguration
+    apiServer:
+        extraArgs:
+          default-not-ready-toleration-seconds: "30"
+          default-unreachable-toleration-seconds: "30"
+- role: worker
+  # Extra port mappings are required to get into your cluster...
+  extraPortMappings:
+    # A list of extra ports to expose.
+    # containerPort (is the k8s port) and hostPort is the port on your machine.
+    # I recommend just setting both numbers to the value you set the `nodePort` to....
+    # I also comment each one in the list to indicate what it is for:
+
+    # ingress http
+    - containerPort: 80
+      hostPort: 80
+      protocol: TCP
+    # ingress https
+    - containerPort: 443
+      hostPort: 443
+      protocol: TCP
+    # python-rest-server
+    - containerPort: 30007
+      hostPort: 30007
+      protocol: TCP
+- role: worker
+- role: worker

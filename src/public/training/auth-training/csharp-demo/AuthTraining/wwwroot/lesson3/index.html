@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Auth-Demo</title>
+</head>
+
+<body>
+<div>
+    <label>
+        Username: <input type="text" id="login_username"/>
+    </label>
+    <label>
+        Password: <input type="text" id="login_password"/>
+    </label>
+    <button onclick="login()" >Submit</button>
+</div>
+</body>
+
+<script>
+    function login() {
+        var inputUsername = document.getElementById("login_username").value;
+        var inputPassword = document.getElementById("login_password").value;
+
+        fetch("/api/lesson3/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                username: inputUsername,
+                password: inputPassword,
+            }),
+        }).then((success) => {
+            console.log("Success: ", success);
+        }).catch((error) => {
+            console.log("Error: ", error);
+        });
+    }
+</script>

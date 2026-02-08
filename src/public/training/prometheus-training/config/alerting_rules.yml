@@ -1,0 +1,21 @@
+groups:
+  - name: CalianAlerts
+    rules:
+      # The name of the alert. Must be a valid label value.
+      - alert: CalculationBelowZero
+        # The PromQL expression to evaluate. Every evaluation cycle this is
+        # evaluated at the current time, and all resultant time series become
+        # pending/firing alerts.
+        expr: sum(calian_sampleClientApp_calculation_value) < 0
+        # Alerts are considered firing once they have been returned for this long.
+        # Alerts which have not yet fired for long enough are considered pending.
+        for: 0s
+        # Labels to add or overwrite for each alert.
+        # Here we are adding a "severity" label so we can create a filter to see only values with a particular severity
+        labels:
+          severity: high
+        # Annotations to add to each alert.
+        # These are descriptions for the alert.
+        # Can use template strings to substitute values
+        annotations:
+          summary: Sum of returned values is below zero!

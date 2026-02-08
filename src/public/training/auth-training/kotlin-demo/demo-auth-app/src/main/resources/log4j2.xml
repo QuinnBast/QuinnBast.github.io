@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <Filters>
+                <!-- To see Hypothetical debug logs, comment the line below out -->
+                <MarkerFilter marker="HYPOTHETICAL" onMatch="DENY" onMismatch="NEUTRAL"/>
+
+                <!-- The ClientLoggerInterceptor is a noisy class that logs all grpc requests. -->
+                <!-- To filter out particular endpoints from the class, the marker below is the format "ClientLoggerInterceptor_<EndpointName>" -->
+                <MarkerFilter marker="ClientLoggerInterceptor_rmt3.v3.Rmt3GwServices/UpdateInterferenceInformation" onMatch="DENY" onMismatch="NEUTRAL"/>
+
+                <!-- The ServerLoggerInterceptor is a noisy class that logs all grpc requests. -->
+                <!-- To filter out particular endpoints from the class, the marker below is the format "ClientLoggerInterceptor_<EndpointName>" -->
+                <MarkerFilter marker="ServerLoggerInterceptor_rmt3.v3.Rmt3GwServices/UpdateInterferenceInformation" onMatch="DENY" onMismatch="NEUTRAL"/>
+
+                <!-- The UuidProducer can be a noisy class that logs all kafka requests and responses. -->
+                <!-- To filter out particular kafka topics from the class, the marker below has the format "UuidProducer_<TopicName>" -->
+                <MarkerFilter marker="UuidProducer_calculate-unsolicited-update-response" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <MarkerFilter marker="UuidProducer_calculate-unsolicited-update-request" onMatch="DENY" onMismatch="NEUTRAL"/>
+            </Filters>
+            <PatternLayout>
+                <Pattern>%date{YYYY-MM-dd_HH:mm:ss.SSS}|%thread|%msg|%method|%logger{0}|%file|%line|%level%n</Pattern>
+            </PatternLayout>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.calian" level="info" additivity="false">
+            <AppenderRef ref="STDOUT"/>
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="STDOUT"/>
+        </Root>
+    </Loggers>
+</Configuration>

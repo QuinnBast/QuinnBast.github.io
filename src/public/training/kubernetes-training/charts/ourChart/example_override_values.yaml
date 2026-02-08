@@ -1,0 +1,5 @@
+pythonRestApi:
+  image:
+    registry: myPrivateRegistry
+    name: myCustomContainer
+    tag: myCustomTag

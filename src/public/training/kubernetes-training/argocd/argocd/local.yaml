@@ -1,0 +1,123 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+# Metadata defines the resource for ArgoCD to find.
+metadata:
+  name: python-rest
+  # Namespace MUST be ArgoCD here for ArgoCD to detect this configuration
+  namespace: argocd
+
+# The spec defines the configuration for the application
+spec:
+  project: default
+  # Source defines the location of the upstream helm chart that we are using.
+  # NOTE: This means that you must use a helm repository to pull charts.
+  sources:
+    - chart: python-rest
+      repoURL: https://artifactory.eng.at.caliangroup.com:443/artifactory/at-helm-local
+      targetRevision: 0.0.2
+      helm:
+        # Use credentials from the source repository
+        passCredentials: true
+        releaseName: python-rest
+        # Location to a values.yaml file for overriding
+        valueFiles:
+          - $gitlab/argocd/python-rest/values.yaml
+    - repoURL: https://gitlab.com/calianat/software/training/kubernetes-training.git
+      targetRevision: main
+      ref: gitlab
+  # The destination where the manifests should be applied
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: calian
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+# Metadata defines the resource for ArgoCD to find.
+metadata:
+  name: redis
+  # Namespace MUST be ArgoCD here for ArgoCD to detect this configuration
+  namespace: argocd
+
+# The spec defines the configuration for the application
+spec:
+  project: default
+  # Source defines the location of the upstream helm chart that we are using.
+  # NOTE: This means that you must use a helm repository to pull charts.
+  sources:
+    - chart: redis
+      repoURL: https://charts.bitnami.com/bitnami
+      targetRevision: 17.11.6
+      helm:
+        # Use credentials from the source repository
+        passCredentials: true
+        releaseName: redis
+        # Location to a values.yaml file for overriding
+        valueFiles:
+          - $gitlab/argocd/redis/values.yaml
+    - repoURL: https://gitlab.com/calianat/software/training/kubernetes-training.git
+      targetRevision: main
+      ref: gitlab
+  # The destination where the manifests should be applied
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: redis
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+# Metadata defines the resource for ArgoCD to find.
+metadata:
+  name: loki-stack
+  # Namespace MUST be ArgoCD here for ArgoCD to detect this configuration
+  namespace: argocd
+
+# The spec defines the configuration for the application
+spec:
+  project: default
+  # Source defines the location of the upstream helm chart that we are using.
+  # NOTE: This means that you must use a helm repository to pull charts.
+  sources :
+    - chart: loki-stack
+      repoURL: https://grafana.github.io/helm-charts
+      targetRevision: 2.10.2
+      helm:
+        releaseName: loki-stack
+        # Location to a values.yaml file for overriding
+        valueFiles:
+          - $gitlab/argocd/loki-stack/values.yaml
+    - repoURL: https://gitlab.com/calianat/software/training/kubernetes-training.git
+      targetRevision: main
+      ref: gitlab
+  # The destination where the manifests should be applied
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: logging
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+# Metadata defines the resource for ArgoCD to find.
+metadata:
+  name: kube-prometheus-stack
+  # Namespace MUST be ArgoCD here for ArgoCD to detect this configuration
+  namespace: argocd
+
+# The spec defines the configuration for the application
+spec:
+  project: default
+  # Source defines the location of the upstream helm chart that we are using.
+  # NOTE: This means that you must use a helm repository to pull charts.
+  sources:
+    - chart: kube-prometheus-stack
+      repoURL: https://prometheus-community.github.io/helm-charts
+      targetRevision: 45.21.0
+      helm:
+        releaseName: kube-prometheus-stack
+        # Location to a values.yaml file for overriding
+        valueFiles:
+          - $gitlab/argocd/kube-prometheus-stack/values.yaml
+    - repoURL: https://gitlab.com/calianat/software/training/kubernetes-training.git
+      targetRevision: main
+      ref: gitlab
+  # The destination where the manifests should be applied
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: monitoring

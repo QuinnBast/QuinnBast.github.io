@@ -1,0 +1,22 @@
+apiVersion: v1
+
+# Tell kubernetes we want a Pod
+kind: Pod
+
+# Give the pod a name
+metadata:
+  name: nginx
+
+# Define the Pod's configuration
+spec:
+
+  # We define a list of docker containers that should be created in the Pod
+  # By default, a Kubernetes Pod can contain multiple docker containers.
+  # However, most of the time, you will only ever put one container in a Pod
+  containers:
+
+    # Define the container's name, docker image, and specify the ports it should expose
+    - name: nginx
+      image: nginx:1.14.2
+      ports:
+        - containerPort: 80

@@ -1,0 +1,23 @@
+## THIS IS THE SOLUTION!
+## TRY TO FOLLOW ALONG BEFORE LOOKING HERE!!
+
+
+
+# Indicate that we want to use the python:3.9 docker image
+FROM python:3.9
+
+# Copy all of our python files into the container
+COPY ./src /app
+
+
+# Set our working directory for future commands
+# Acts as a `cd`
+WORKDIR /app
+
+
+# Tell the docker engine to run a pip install in our image
+RUN pip install -r requirements.txt
+
+
+# Tell docker to run our program!
+CMD python3 -u main.py

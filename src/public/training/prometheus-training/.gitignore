@@ -1,0 +1,19 @@
+.gradle/
+*.idea
+*.iml
+*.log
+**/build/*
+**/logs/*
+**/kafdrop-mount/*
+**/*.tgz
+
+# python
+.venv/
+venv/
+__pycache__
+.pytest_cache
+.ipynb_checkpoints
+.editorconfig
+*.swp
+infrastructure/base/gitea/volumeData/init_config_repo/
+services/opt-kafka-exporter/import.db.tar.gz

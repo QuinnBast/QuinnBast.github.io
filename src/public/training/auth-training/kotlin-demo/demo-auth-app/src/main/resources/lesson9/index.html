@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Auth-Demo</title>
+</head>
+
+<body>
+<div>
+    <label>
+        Username: <input type="text" id="login_username"/>
+    </label>
+    <label>
+        Password: <input type="text" id="login_password"/>
+    </label>
+    <label>
+        OTP: <input type="text" id="otp_guess"/>
+    </label>
+    <button onclick="login()" >Submit</button>
+
+    <button onclick="testBearer()" >Test Bearer</button>
+    <button onclick="testJwt()" >Test JWT After Login</button>
+</div>
+</body>
+
+<script>
+    var jwt = "";
+
+    function login() {
+        var inputUsername = document.getElementById("login_username").value;
+        var inputPassword = document.getElementById("login_password").value;
+        var otpGuess = document.getElementById("otp_guess").value;
+
+        fetch("/api/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                username: inputUsername,
+                password: inputPassword,
+                otpGuess: otpGuess
+            }),
+        }).then((success) => {
+            // Read the JWT from the response body.
+            // Store it in global JWT variable
+            success.json().then((data) => {
+                jwt = data.token;
+                console.log("JWT: ", jwt);
+            });
+            console.log("Success: ", success);
+        }).catch((error) => {
+            console.log("Error: ", error);
+        });
+    }
+
+    function testBearer() {
+        fetch("/api/bearer", {
+            method: "GET",
+            headers: {
+                Authorization: "Bearer eyJ1c2VyIjp7InVzZXJuYW1lIjoiUXVpbm4iLCJzYWx0IjoiUVdqYXVSSVNxZ3A5OVM1V0IxQTVLUT09IiwiaGFzaGVkUGFzc3dvcmQiOiIxSnI3RzFyM0hhR3djYnR3bkZ3ditRPT0iLCJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXX0sInNlc3Npb25JZCI6ImU2Mzg0MmZjLTE2NzItNDU3OS1hNDg1LWJkZGYwYjQ2NTlmYSIsInRpbWVDcmVhdGVkIjoxNzIxMDg1MDAyNjIyLCJleHBpcmVzQXQiOjE3MjEwODg2MDI2MjJ9",
+            }
+        }).then((success) => {
+            console.log("Success Bearer: ", success);
+        }).catch((error) => {
+            console.log("Error Bearer: ", error);
+        });
+    }
+
+    function testJwt() {
+        console.log("Sending JWT: ", jwt)
+        // Fetch JWT endpoint.
+        fetch("/api/jwt", {
+            method: "GET",
+            headers: {
+                // Use the JWT stored in the global variable.
+                Authorization: "Bearer " + jwt,
+                // Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhdXRoLWRlbW8iLCJpc3MiOiIwLjAuMC4wIiwiZXhwIjo5OTk5OTk5OTk5LCJ1c2VybmFtZSI6IkFsaWNlIn0.pAn8G6YuJBbUJtX7iF1czQWee02GZlg4QPRzuxI_Nxc",
+            }
+        }).then((success) => {
+            console.log("Success JWT: ", success);
+        }).catch((error) => {
+            console.log("Error JWT: ", error);
+        });
+    }
+</script>
