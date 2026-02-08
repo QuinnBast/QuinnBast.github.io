@@ -23,12 +23,12 @@ Let's look at `sample_sampleClientApp_foo_count_total`. Click the execute button
 
 You should see something that looks like this:
 
-![Prometheus Table View](./images/prometheus/PrometheusTableView.png)
+![Prometheus Table View](../../images/prometheus/PrometheusTableView.png)
 
 By default, Prometheus is in a `Table` view. A tab exists for `Graph`.
 Clicking graph shows you how powerful prometheus is.
 
-![FooCountTotal](./images/prometheus/FooCountTotal.png)
+![FooCountTotal](../../images/prometheus/FooCountTotal.png)
 
 ## Metric Format
 
@@ -53,7 +53,7 @@ In the previous example, we added a metric with some labels, `sample_sampleClien
 In the search bar in Prometheus, search for `sample_sampleClientApp_calculation_value`. In this search, we can see more interesting results.
 Each row in the results is a unique combination of the possible label values for the metric.
 
-![Labeled Query](./images/prometheus/LabelSearch.png)
+![Labeled Query](../../images/prometheus/LabelSearch.png)
 
 In this case, we can see `wasFeatureEnabled`, `color`, and `accountType` are the labels we defined in our code.
 By default, a query of just the metric name returns all unique labels.
@@ -64,7 +64,7 @@ sample_sampleClientApp_calculation_value{wasFeatureEnabled="true"}
 ```
 
 
-![Labeled Query](./images/prometheus/GraphLabelQuery.png)
+![Labeled Query](../../images/prometheus/GraphLabelQuery.png)
 
 By adding a `{ labelName = "labelValue" }`, we tell Prometheus that we only want to see metrics that match the label we want.
 There are also operators like `!=` to not match on a label, `=~` to perform a regex match.
@@ -92,7 +92,7 @@ sum(sample_sampleClientApp_calculation_value) by (wasFeatureEnabled)
 
 This is similar to performing a "GROUP BY" in other databases. The `sum` operator will group all of the same label values together so we are only shown the sum of the unique labels that we requested:
 
-![Sum by](./images/prometheus/SumBy.png)
+![Sum by](../../images/prometheus/SumBy.png)
 
 Alternatively, we can remove the `by` part to get a completel sum for the entire metric:
 
@@ -100,7 +100,7 @@ Alternatively, we can remove the `by` part to get a completel sum for the entire
 sum(sample_sampleClientApp_calculation_value)
 ```
 
-![Sum All](./images/prometheus/SumAllLabels.png)
+![Sum All](../../images/prometheus/SumAllLabels.png)
 
 Or, we could show the sum by satellite:
 
@@ -108,7 +108,7 @@ Or, we could show the sum by satellite:
 sum(sample_sampleClientApp_calculation_value) by (satellite)
 ```
 
-![Sum by Satellite](./images/prometheus/SumBySatellite.png)
+![Sum by Satellite](../../images/prometheus/SumBySatellite.png)
 
 Additionally, Prometheus provides averaging capabilities to show the value over time.
 You can do this using the `rate` function.

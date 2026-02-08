@@ -44,7 +44,7 @@ Before we get started, make sure you have the following parts:
 
 Here’s how to connect the breakout board to the Arduino via I2C:
 
-![Hookup Diagram for Arduino Mega](./images/ArduinoHookupImuSensor.png)
+![Hookup Diagram for Arduino Mega](../../images/ArduinoHookupImuSensor.png)
 
 The reason we need the Mux is because the 9DoF IMUs are only configurable to have 2 addresses, either 0x67 or 0x68.
 However, because we have 5 sensors, we need to be able to talk to each sensor in another way.

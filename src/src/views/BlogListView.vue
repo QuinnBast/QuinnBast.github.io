@@ -1,28 +1,16 @@
 <script setup lang="ts">
 // @ts-nocheck
 import {type Ref, ref, computed } from "vue";
-import { default as matter } from 'gray-matter'
-import type {GrayMatterFile} from "gray-matter";
 import Card from "primevue/card";
 import Button from "primevue/button";
 import Checkbox from "primevue/checkbox";
 import PanelMenu from 'primevue/panelmenu';
 import Skeleton from 'primevue/skeleton';
 import type {MenuItem} from "primevue/menuitem";
-import { useRoute, useRouter } from 'vue-router'
-import { blogItems } from '@/utils/blog-post-list';
+import { useRouter } from 'vue-router'
+import { API, BlogMeta, BlogPost } from '@/api/api.ts';
 
 const router = useRouter()
-
-class BlogPost {
-  public data: GrayMatterFile<string>
-  public filePath: string
-
-  constructor(filePath: string, fileContent: string) {
-    this.filePath = filePath
-    this.data = matter(fileContent);
-  }
-}
 
 const blogPosts: Ref<Array<BlogPost>> = ref([])
 const tags: Ref<Array<string>> = ref([])
@@ -31,11 +19,14 @@ const selectedTags: Ref<Array<string>> = ref([])
 const navPathItems: Ref<Array<MenuItem>> = ref([])
 
 function getBlogPosts() {
-  blogItems.map((url) => {
-    fetchBlogData(url).then((blogPost) => {
-      blogPosts.value.push(blogPost);
+  API.getBlogMeta().then(response => {
+    response.forEach((blogPost) => {
+      blogPosts.value.push(blogPost)
       addToPathList(blogPost)
-      blogPost.data.data.tags.forEach((tag: string) => {
+
+      const blogTags = blogPost.meta.tags
+
+      blogTags.forEach((tag) => {
         if(!tags.value.includes(tag)) {
           tags.value.push(tag)
         }
@@ -44,18 +35,10 @@ function getBlogPosts() {
   })
 }
 
-function fetchBlogData(blogLink: string): Promise<BlogPost> {
-  return fetch(blogLink).then((response) => {
-    return response.text().then((text) => {
-      return new BlogPost(blogLink, text);
-    })
-  })
-}
-
 function addToPathList(blogPost: BlogPost) {
 
-  const blogPostPath = blogPost.data.data.path.split("/")
-  blogPostPath.push(blogPost.data.data.title)
+  const blogPostPath = blogPost.meta.path.split("/")
+  blogPostPath.push(blogPost.meta.title)
 
   var curentNavPathItems = navPathItems.value
 
@@ -65,14 +48,14 @@ function addToPathList(blogPost: BlogPost) {
       // The path already exists. Update to the new item list and continue walking.
       curentNavPathItems = item.items!!;
     } else {
-      var isArticle = path == blogPost.data.data.title;
+      var isArticle = path == blogPost.meta.title;
       var navPath = {
         label: path,
         icon: isArticle ? "pi pi-book" : "pi pi-folder",
         items: isArticle ? undefined : [],
         command: () => {
           if (isArticle) {
-            router.push('/article?filePath=' + blogPost.filePath);
+            router.push('/article?filePath=' + blogPost.meta.path);
           }
         }
       }
@@ -90,12 +73,12 @@ const blogsSorted = computed(() => {
   return blogPosts.value
       .filter((item) => {
         if(selectedTags.value.length > 0) {
-          return item.data.data.tags.some( tag => selectedTags.value.includes(tag))
+          return item.meta.tags.some( tag => selectedTags.value.includes(tag))
         } else {
           return true
         }
       })
-      .sort((first, second) => { return new Date(second.data.data.date) - new Date(first.data.data.date) });
+      .sort((first, second) => { return second.meta.date - first.meta.date });
 })
 
 getBlogPosts();
@@ -130,21 +113,21 @@ getBlogPosts();
             class="blog-card"
         >
           <template #title>
-            <h3>{{ post.data.data.title }}</h3>
+            <h3>{{ post.title }}</h3>
           </template>
 
           <template #content>
-            <p class="excerpt">{{ post.data.data.description }}</p>
-            <p class="date">{{ new Date(post.data.data.date).toLocaleDateString() }}</p>
+            <p class="excerpt">{{ post.meta.description }}</p>
+            <p class="date">{{ new Date(post.meta.date).toLocaleDateString() }}</p>
           </template>
 
           <template #footer>
             <Button
-                label="Read Post"
+                label="View Training"
                 icon="pi pi-book"
                 iconPos="left"
                 class="p-button-text p-button-sm"
-                @click="() => router.push('/article?filePath=' + post.filePath)"
+                @click="() => router.push('/article' + post.filePath)"
             />
           </template>
         </Card>

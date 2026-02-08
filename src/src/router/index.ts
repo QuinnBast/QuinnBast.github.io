@@ -8,7 +8,9 @@ import StringReplaceTool from '../views/tools/StringReplaceTool.vue'
 import JsonFormatTool from '../views/tools/JsonFormatTool.vue'
 import S2RegionCovererTool from '../views/tools/S2RegionCovererTool.vue'
 import H3RegionCovererTool from '../views/tools/H3RegionCovererTool.vue'
+import TrainingLessonView from '../views/TrainingLessonView.vue'
 import UnderConstructionView from '../views/UnderConstruction.vue'
+import TrainingView from '../views/TrainingMaterial.vue'
 import HomelabView from '../views/HomelabView.vue'
 
 const router = createRouter({
@@ -29,8 +31,10 @@ const router = createRouter({
       name: 'blog',
       component: BlogListView,
     },
+      // Important: This needs to be a path that matches all subpaths.
+      // This makes it so that any local markdown links to relative files like (ref)[./otherPath] work. Very cool!
     {
-      path: '/article',
+      path: '/article/:path*',
       name: 'article',
       component: IndividualBlogPostView,
     },
@@ -67,7 +71,12 @@ const router = createRouter({
     {
       path: '/training',
       name: 'training',
-      component: UnderConstructionView,
+      component: TrainingView,
+    },
+    {
+      path: '/lesson/:path*',
+      name: 'trainingLesson',
+      component: TrainingLessonView,
     },
   ],
   scrollBehavior: () => ({ top: 0 })

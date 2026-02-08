@@ -12,7 +12,7 @@ tags:
 To understand how Prometheus works, it is important to understand the architecture of Prometheus.
 Prometheus works by using a "pull based" model.
 
-![Prometheus Architecture](./images/prometheus/PrometheusArchitecture.png)
+![Prometheus Architecture](../../images/prometheus/PrometheusArchitecture.png)
 
 [A full architecture diagram can be found here](https://prometheus.io/docs/introduction/overview/#architecture), but the diagram above simplifies and makes the software a bit easier to understand for someone jumping in.
 
@@ -32,7 +32,7 @@ For every scrape target, prometheus also exposes metrics about the scrape proces
 - `up` - is a metric that monitors scrape targets. `1` if the target was successfully scraped, `0` if not. This is useful to see if a server is, well, "up" or not.
 - `scrape_duration_seconds` - How long the scrape took to complete
 
-Prometheus provides a web GUI out of the box which supports making API queries and provides a visual representation of the time series data from the web.
+Prometheus provides a web GUI out of the box which supports making Api queries and provides a visual representation of the time series data from the web.
 
 ## Starting a Local Prometheus
 
@@ -83,7 +83,7 @@ Running this command will start up a local prometheus server on port 9090.
 
 Once the container has started, open up a web browser to port 9090 and you should see the Prometheus GUI:
 
-![Prometheus GUI](./images/prometheus/PrometheusGui.png)
+![Prometheus GUI](../../images/prometheus/PrometheusGui.png)
 
 The main landing page to prometheus allows you to perform queries on prometheus metrics.
 By default, Prometheus will have no metrics available to query.
@@ -97,7 +97,7 @@ The most interesting ones are under the `Status` menu:
 One thing to note, is that some configuration settings have been already configured.
 This file configures a `scrape_configs` section which tells prometheus to attempt to scrape `localhost:1234`.
 
-![Failing Target](./images/prometheus/PrometheusFailingTarget.png)
+![Failing Target](../../images/prometheus/PrometheusFailingTarget.png)
 
 Currently we have no metrics being reported at this location so the target appears as being DOWN on the `Targets` page.
 However, this will soon change.

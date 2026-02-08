@@ -21,7 +21,7 @@ The control plane consists of the following components:
 
 | Service Name            | Description                                                                                                                                                                                                                                                                                                                                |
 |-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| kube-apiserver          | The API server is how external clients are able to communicate with the cluster. Commands like `kubectl` or `helm` commands will all interact with the kubernetes API. Under the hood, every kubectl is a REST request to the kubernetes API server. The API server allows clients to communicate with and control the kubernetes cluster. |
+| kube-apiserver          | The Api server is how external clients are able to communicate with the cluster. Commands like `kubectl` or `helm` commands will all interact with the kubernetes Api. Under the hood, every kubectl is a REST request to the kubernetes Api server. The Api server allows clients to communicate with and control the kubernetes cluster. |
 | etcd                    | Etcd is a key-value store that Kubernetes uses to store the cluster state and share it with all machines in the cluster. Etcd is an essential part of Kubernetes. Information like what pods are deployed, what manifests are live, Configmap data, and more are all stored in etcd.                                                       |
 | kube-scheduler          | This component watches for newly created pods from the kubernetes api server. Pods with no assigned nodes will get assign to a node based on resource requests, taints, and tolerations.                                                                                                                                                   |
 | kube-controller-manager | This component runs the controller processes which report which nodes are healthy, if jobs are running, and manages services on each node.                                                                                                                                                                                                 |
@@ -36,21 +36,21 @@ The main benefit of using Kubernetes is to be able to deploy software across mul
 If we deploy our Kubernetes cluster without a highly available control plane, then the system-critical functionality is all dependent on one machine.
 If that single machine fails, then the rest of the cluster is non-functional!
 
-Luckily, by design, all of the components of the control-plane can manage high-availability on their own except for one: the Kubernetes API server.
-The API server is what all clients to the cluster use in order to perform operations against the cluster.
-One critical operation that the API server provides is the ability to provide a Lease.
+Luckily, by design, all of the components of the control-plane can manage high-availability on their own except for one: the Kubernetes Api server.
+The Api server is what all clients to the cluster use in order to perform operations against the cluster.
+One critical operation that the Api server provides is the ability to provide a Lease.
 When a server joins the kubernetes cluster, it requests a Lease.
 Leases are very similar to real world Leases; we ask to rent a space, and there is a recurring bill that we need to pay otherwise we get kicked out.
 In a Kubernetes context, each server in the cluster takes out a Lease, and must renew it’s lease to prove that it is still alive.
 
-Without high availability, each machine in the cluster will talk to the Kubernetes API by sending requests to a single IP address.
+Without high availability, each machine in the cluster will talk to the Kubernetes Api by sending requests to a single IP address.
 However, if that machine happens to fail, the entire cluster is no longer able to communicate, as the two remaining servers are configured to talk to an offline machine.
 What a nightmare!
 
-![Diagram of failing primary machine](./images/failing-kube-api.png)
+![Diagram of failing primary machine](../../images/failing-kube-api.png)
 
-[So how do we make our Kubernetes API highly available](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/ha-topology/)?
-We need to use a load balancer so that incoming requests to the Kubernetes API are forwarded on to healthy machines.
+[So how do we make our Kubernetes Api highly available](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/ha-topology/)?
+We need to use a load balancer so that incoming requests to the Kubernetes Api are forwarded on to healthy machines.
 
 # What is a Load Balancer?
 
@@ -66,13 +66,13 @@ Layer 4 load balancers puts routing information in the packet itself, but this m
 Finally, a Layer 7 load balancer works at the application level and this can use information like HTTO protocols, message content types, headers, and more to determine where it’s packets should go.
 
 In our case, we need a load balancer that will control and manage a floating virtual IP address for the entire cluster, and this is achievable with a Layer 2 load balancer.
-With a Load Balancer in place, the load balancer can accept traffic for the Kubernetes API server, and forward the traffic to the machines that are online.
+With a Load Balancer in place, the load balancer can accept traffic for the Kubernetes Api server, and forward the traffic to the machines that are online.
 
-![Load Balancer serving traffic](./images/load-balancer.png)
+![Load Balancer serving traffic](../../images/load-balancer.png)
 
-Now, with a load balancer in front, we can tell each of the servers that they are going to connect to the load balancer’s managed IP address when they try to join the cluster or talk to the Kubernetes API. As a result, if any of the servers fail, the load balancer still provides the IP to a server that is online within the cluster.
+Now, with a load balancer in front, we can tell each of the servers that they are going to connect to the load balancer’s managed IP address when they try to join the cluster or talk to the Kubernetes Api. As a result, if any of the servers fail, the load balancer still provides the IP to a server that is online within the cluster.
 
-![Load Balancer routing API traffic](./images/load-balancer-routing-api-traffic.png)
+![Load Balancer routing Api traffic](../../images/load-balancer-routing-api-traffic.png)
 
 # How to setup a Load Balancer
 
@@ -96,7 +96,7 @@ To get started edeploying kube-vip, follow alog with their [DaemonSet installati
 ### KeepaliveD and HAProxy
 
 Unfotunately, without using kube-vip, your cluster requires two virtual IP addresses.
-One IP for the kubernetes API, and one IP for your cluster LoadBalancer Services.
+One IP for the kubernetes Api, and one IP for your cluster LoadBalancer Services.
 
 To make your control-plane highly available, [the recommended approach by Kubernetes](https://github.com/kubernetes/kubeadm/blob/main/docs/ha-considerations.md) standard is to use either kube-vip (as mentioned above), or [KeepaliveD](https://www.keepalived.org/) with [HAProxy](https://www.haproxy.org/).
 

@@ -33,7 +33,7 @@ In this type of software, the software typically forms a ‘cluster', generally 
 
 To implement this in your own software, you would probably use a RAFT client library while persisting a WAL (write-ahead log) to persiste the state of each replica. [A number of different ones are listed here](https://raft.github.io/#implementations). Even though the software is using local disks here, if one were to fail, the software would be able to tolerate the failure because the software is “clustered”. Once the failing system comes back online, it can ask the cluster “what did I miss?” and get caught right back up. Thus, if a software system supports clustering, we can use local disks.
 
-![Diagram of Replicated Software](./images/SoftwareReplication.png)
+![Diagram of Replicated Software](../../images/SoftwareReplication.png)
 
 > **_TIP:_**  In Kubernetes, it is important that any “clustered” software should ALWAYS use local-pv or hostpath volume providers. Local volumes are significantly faster, and because state is already being replicated between the software, no disk replication is required. In these systems, the software cluster already takes care of replication for you!
 
@@ -47,7 +47,7 @@ At the lowest level, this type of replication is generally done through the use 
 
 > **_TIP:_**  In the Kubernetes, the [Container Storage Interface](https://github.com/container-storage-interface/spec/blob/master/spec.md) (CSI) layer allows applications to access and provide a filesystem to containers through a network mounted file-system (NAS or iSCSI, for example).
 
-![Diagram of Disk Replication](./images/DiskReplication.png)
+![Diagram of Disk Replication](../../images/DiskReplication.png)
 
 
 # Which do I need?
@@ -56,7 +56,7 @@ If you have to ask, it's probably a Replicated disk solution. But, not always.
 
 If your software is highly available and can replicate & sync data among replicas with ease, then you would know that your application is highly available. If your software cannot do that, we need to ask some questions.
 
-![Replication Flowchart](./images/DiskReplicationFlowchart.png)
+![Replication Flowchart](../../images/DiskReplicationFlowchart.png)
 
 # CSI Drivers
 

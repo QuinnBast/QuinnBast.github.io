@@ -8,9 +8,9 @@ import Card from "primevue/card";
 import Chip from "primevue/chip";
 import Skeleton from 'primevue/skeleton';
 import router from "@/router";
-import { blogItems } from '@/utils/blog-post-list';
 import { Markdown, VNodeRenderer } from 'vue-markdown-next';
 import remarkGfm from 'remark-gfm';
+import { API } from '@/api/api.ts';
 
 class BlogPost {
   public data: GrayMatterFile<string>
@@ -24,45 +24,71 @@ const post: Ref<BlogPost | null> = ref(null)
 const nextPostPath: Ref<string | null> = ref(null);
 
 function getBlogPost() {
-  const path = router.currentRoute.value.query.filePath?.toString()!!;
+  const path = router.currentRoute.value.path.split("article/")[1].toString()!!;
 
-  fetchBlogData(path).then((blogPost) => {
-    post.value = blogPost;
-
-    // Calculate the next post
-    const currentIndex = blogItems.indexOf(path);
-    if (currentIndex >= 0 && currentIndex < blogItems.length - 1) {
-      nextPostPath.value = blogItems[currentIndex + 1]; // Next post in the list
-    } else {
-      nextPostPath.value = blogItems[0];
-    }
-
-  })
-  .catch((error) => {
+  API.getAsset(path).then((response) => {
+    return response.text()
+  }).then((text) => {
+      post.value = new BlogPost(text)
+  }).catch((error) => {
     console.error("Error loading blog post:", error); // Log the error to the console
     post.value = null; // Set post to null in case of error
   });
 }
 
-function fetchBlogData(blogLink: string): Promise<BlogPost> {
-  return fetch(blogLink).then((response) => {
-    return response.text().then((text) => {
-      return new BlogPost(text);
-    })
+function getBlogMeta() {
+  const path = router.currentRoute.value.path.split("article/")[1].toString()!!;
+
+  API.getBlogMeta().then(blogItems => {
+    const paths = blogItems.map(blogItem => blogItem.filePath);
+    // Determine next blog post.
+    const currentIndex = paths.indexOf("/" + path);
+    if (currentIndex >= 0 && currentIndex < paths.length - 1) {
+      nextPostPath.value = paths[currentIndex + 1]; // Next post in the list
+    } else {
+      nextPostPath.value = paths[0];
+    }
   })
+    .catch((error) => {
+      console.error("Error loading blog meta:", error); // Log the error to the console
+      post.value = null; // Set post to null in case of error
+    });
 }
 
 function goToNextPost() {
   if (nextPostPath.value) {
     post.value = null;
-    router.push('/article?filePath=' + nextPostPath.value).then(() => {
+    router.push('/article' + nextPostPath.value).then(() => {
       // Scroll to top of the page after navigation
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Reload the page so that it refreshes the content and "go to next" button.
+      window.location.reload();
     });
   }
 }
 
+function fixImgSrc(src: string) {
+  // Replace images from their relative path in the markdown to the absolute path where assets will be served on the server.
+  const newPath = router.currentRoute.value.path.split("article/")[1].toString()!!;
+  var pathSlice = newPath.split("/");
+  pathSlice.pop();
+
+  // Count and pop additional times based on the number of "../" in the URL
+  while (src.includes("../")) {
+    src = src.replace("../", "");
+    pathSlice.pop();
+  }
+
+  var hostUrl = 'http://localhost:9000/';
+  if (process.env.NODE_ENV === 'production') {
+    hostUrl = '/';
+  }
+
+  return hostUrl + pathSlice.join("/") + "/" + src.replace("./", "");
+}
+
 getBlogPost();
+getBlogMeta();
 
 // Watch for router query changes (filePath) to reload post
 watch(
@@ -103,6 +129,9 @@ watch(
         <div style="padding: 20px;">
           <v-node-renderer :content="children"></v-node-renderer>
         </div>
+      </template>
+      <template #img="{ src, alt, style }">
+        <img :src="fixImgSrc(src)" :alt="alt" :style=style >
       </template>
     </Markdown>
     <div class="navigation-buttons">

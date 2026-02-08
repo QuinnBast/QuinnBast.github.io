@@ -39,6 +39,7 @@ dependencies {
     implementation("com.sksamuel.hoplite:hoplite-yaml:2.7.5")
     implementation("io.ktor:ktor-server-metrics-micrometer:2.3.11")
     implementation("io.micrometer:micrometer-registry-prometheus:1.10.3")
+    implementation("org.yaml:snakeyaml:2.2")
 }
 
 tasks.withType<KotlinCompile>().all {

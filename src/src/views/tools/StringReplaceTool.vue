@@ -80,7 +80,7 @@ export default {
       // Get the text to copy
       const textToCopy = this.resultText;
 
-      // Use the Clipboard API to programmatically copy the text
+      // Use the Clipboard Api to programmatically copy the text
       navigator.clipboard.writeText(textToCopy)
           .then(() => {
             alert("Result copied to clipboard!");

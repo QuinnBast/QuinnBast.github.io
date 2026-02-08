@@ -2,5 +2,9 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/public/training/auth-training" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/public/training/docker-training" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/public/training/kubernetes-training" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/public/training/prometheus-training" vcs="Git" />
   </component>
 </project>

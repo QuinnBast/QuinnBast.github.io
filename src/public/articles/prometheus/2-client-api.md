@@ -135,7 +135,7 @@ With this setup, let's try to run our application. Press the play button to star
 
 By default, nothin will appear to happen. However, navigate to `localhost:1234` in a local web browser.
 
-![Application Metrics](./images/prometheus/ExportedMetrics.png)
+![Application Metrics](../../images/prometheus/ExportedMetrics.png)
 
 You should see a website with, what seems like a bit of gibberish.
 However, these are all of the default JVM statistics that Prometheus is reporting about your application.
@@ -143,7 +143,7 @@ You will be able to see things like the allocated heap size, memory pool, garbag
 
 Additionally, looking back at the Prometheus GUI, our scrape target is now live!
 
-![Successful Target](./images/prometheus/PrometheusSuccessfulTarget.png)
+![Successful Target](../../images/prometheus/PrometheusSuccessfulTarget.png)
 
 
 These are nice to know, and certainly nice metrics to have when looking at a JVM based application.
@@ -185,7 +185,7 @@ countFoo.inc();
 Great! Let's stop our app and run it again using the newly implemented Prometheus metric!
 Once running, let's refresh our browser (`localhost:1234`) and Ctrl+F for `foo_count`.
 
-![Custom Metric](./images/prometheus/OurMetricValue.png)
+![Custom Metric](../../images/prometheus/OurMetricValue.png)
 
 There it is! Our counter is in the list of metrics and is reporting a value of `2.0`!
 

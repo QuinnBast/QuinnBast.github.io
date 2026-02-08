@@ -73,7 +73,7 @@ That being said, Godot has been maturing rapidly and I would give it a shot if y
 
 The last game engine in consideration is Unity.
 Unity is written in C# which is a language that is very similar to Java.
-Additionally, C# has library support and frameworks that are heavily supported by Microsoft like ASP.NET which allows easily creating a REST API and server backend.
+Additionally, C# has library support and frameworks that are heavily supported by Microsoft like ASP.NET which allows easily creating a REST Api and server backend.
 Using C#, I can also write a core library, and export that library as a `.dll`.
 That dll can then be used in both my backend ASP.NET server, as well as within the Unity client.
 
